@@ -48,8 +48,7 @@ public class Producto {
     public String toString() {
         return String.format(
             "--------------------------------------\n" +
-            "ID: %d\nTítulo: %s\nAutor: %s\nCantidad disponible: %d\nCantidad vendida: %d\nPrecio: %.2f\nDescuento: %.2f%%\nEstado: %s\n" +
-            "--------------------------------------",
+            "ID: %d\nTítulo: %s\nAutor: %s\nCantidad disponible: %d\nCantidad vendida: %d\nPrecio: %.2f\nDescuento: %.2f%%\nEstado: %s\n",
             id, titulo, autor, cantidadDisponible, cantidadVendida, precio, descuento, estado ? "Disponible" : "No disponible"
         );
     }
