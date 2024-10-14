@@ -1,3 +1,12 @@
+/**
+ * UNIVERSIDAD DEL VALLE DE GUATEMALA
+ * DEPARTAMENTO DE CIENCIA DE LA COMPUTACIÓN
+ * CC2008
+ * AUTOR: Denil José Parada Cabrera 24761
+ * FECHA: 14/10/2024 
+ * DESCRIPCIÓN: Clase que representa la interfaz principal del sistema. Permite al usuario interactuar con el sistema 
+ * para agregar productos, buscar productos por ID, mostrar inventarios por categoría, realizar ventas y mostrar ventas totales.
+ */
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,8 +17,8 @@ public class Interfaz {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
+        // Bucle principal para mostrar el menú y permitir al usuario seleccionar opciones
         do {
-            System.out.println("--------------------------------------");
             System.out.println("1. Agregar Producto");
             System.out.println("2. Buscar Producto por ID");
             System.out.println("3. Mostrar Inventario por Categoría");
@@ -19,38 +28,39 @@ public class Interfaz {
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar el buffer
-            System.out.println("--------------------------------------");
 
             switch (opcion) {
                 case 1:
-                    agregarProducto(scanner);
+                    agregarProducto(scanner); // Agregar un producto
                     break;
                 case 2:
-                    buscarProducto(scanner);
+                    buscarProducto(scanner); // Buscar producto por ID
                     break;
                 case 3:
-                    mostrarPorCategoria(scanner);
+                    mostrarPorCategoria(scanner); // Mostrar productos por categoría
                     break;
                 case 4:
-                    realizarVenta(scanner);
+                    realizarVenta(scanner); // Registrar una venta
                     break;
                 case 5:
-                    mostrarVentasTotales();
+                    mostrarVentasTotales(); // Mostrar las ventas totales
                     break;
                 case 6:
-                    System.out.println("Saliendo...");
+                    System.out.println("Saliendo..."); // Salir del programa
                     break;
                 default:
                     System.out.println("Opción inválida.");
                     break;
             }
-        } while (opcion != 6);
+        } while (opcion != 6); // El menú sigue hasta que el usuario selecciona la opción de salir
     }
 
+    // Método para agregar un nuevo producto
     private static void agregarProducto(Scanner scanner) {
         System.out.print("Ingrese el tipo de producto (Libro, Revista, Comic): ");
-        String tipo = scanner.nextLine(); // Captura la línea completa
+        String tipo = scanner.nextLine(); // Captura el tipo de producto
 
+        // Captura los detalles comunes de un producto
         System.out.print("Ingrese el ID: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer
@@ -75,6 +85,7 @@ public class Interfaz {
 
         boolean estado = true;
 
+        // Según el tipo de producto, captura los detalles específicos y lo agrega
         if (tipo.equalsIgnoreCase("Libro")) {
             System.out.print("Ingrese el número de páginas: ");
             int numPaginas = scanner.nextInt();
@@ -93,7 +104,7 @@ public class Interfaz {
             scanner.nextLine(); // Limpiar el buffer
 
             System.out.print("Ingrese la periodicidad: ");
-            String periodicidad = scanner.nextLine(); // Captura toda la periodicidad
+            String periodicidad = scanner.nextLine();
             gestionador.agregarProducto(new Revista(id, titulo, autor, cantidad, precio, estado, descuento, numPaginas, edicion, periodicidad));
         } else if (tipo.equalsIgnoreCase("Comic")) {
             System.out.print("Ingrese el número de páginas: ");
@@ -111,6 +122,7 @@ public class Interfaz {
         }
     }
 
+    // Método para buscar un producto por su ID y mostrarlo
     private static void buscarProducto(Scanner scanner) {
         System.out.print("Ingrese el ID del producto: ");
         int id = scanner.nextInt();
@@ -124,6 +136,7 @@ public class Interfaz {
         }
     }
 
+    // Método para mostrar los productos de una categoría específica
     private static void mostrarPorCategoria(Scanner scanner) {
         System.out.print("Ingrese la categoría (Libro, Revista, Comic): ");
         String categoria = scanner.nextLine(); // Captura toda la categoría
@@ -139,6 +152,7 @@ public class Interfaz {
         }
     }
 
+    // Método para registrar una venta
     private static void realizarVenta(Scanner scanner) {
         System.out.print("Ingrese el ID del producto: ");
         int id = scanner.nextInt();
@@ -150,6 +164,7 @@ public class Interfaz {
         gestionador.realizarVenta(id, cantidad);
     }
 
+    // Método para mostrar el total de ventas realizadas
     private static void mostrarVentasTotales() {
         System.out.println("Ventas realizadas:");
         for (Venta venta : gestionador.getVentasRealizadas()) {

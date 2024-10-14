@@ -1,3 +1,14 @@
+/**
+ * UNIVERSIDAD DEL VALLE DE GUATEMALA
+ * DEPARTAMENTO DE CIENCIA DE LA COMPUTACIÓN
+ * CC2008
+ * AUTOR: Denil José Parada Cabrera 24761
+ * FECHA: 14/10/2024 
+ * DESCRIPCIÓN: Clase que representa un producto genérico en la tienda. Contiene atributos como ID, título, autor, 
+ * cantidad disponible, precio, descuento y estado del producto. Es la superclase para otros tipos de productos como 
+ * libros, revistas y cómics. También incluye métodos para calcular el precio final (aplicando un descuento) y para 
+ * mostrar la información del producto.
+ */
 public class Producto {
     protected int id;
     protected String titulo;
@@ -6,8 +17,9 @@ public class Producto {
     protected int cantidadVendida;
     protected double precio;
     protected boolean estado;
-    protected double descuento; // Nuevo atributo
+    protected double descuento; // Porcentaje de descuento aplicado al precio del producto
 
+    // Constructor que inicializa todos los atributos del producto, incluyendo el descuento
     public Producto(int id, String titulo, String autor, int cantidadDisponible, double precio, boolean estado, double descuento) {
         this.id = id;
         this.titulo = titulo;
@@ -19,7 +31,7 @@ public class Producto {
         this.descuento = descuento;
     }
 
-    // Getters y Setters
+    // Métodos getter y setter para acceder y modificar los atributos
     public int getId() { return id; }
     public String getTitulo() { return titulo; }
     public String getAutor() { return autor; }
@@ -38,12 +50,12 @@ public class Producto {
     public void setEstado(boolean estado) { this.estado = estado; }
     public void setDescuento(double descuento) { this.descuento = descuento; }
 
-    // Métodos
+    // Método que calcula el precio final del producto aplicando el descuento
     public double calcularPrecioFinal() {
-        // Aplica el descuento
-        return precio * (1 - descuento / 100);  // Precio final con descuento
+        return precio * (1 - descuento / 100);
     }
 
+    // Sobrescribe el método toString para mostrar la información del producto de manera formateada
     @Override
     public String toString() {
         return String.format(
